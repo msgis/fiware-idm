@@ -759,6 +759,9 @@ exports.activate = function(req, res, next) {
 
         // Activate the user if is not or if the actual date not exceeds the expiration date
         if (user.enabled) {
+          if (config.selfservice.redirect_sign_up) {
+            return res.redirect(config.selfservice.redirect_sign_up);
+          }
           res.locals.message = {
             text: 'User already activated',
             type: 'warning',
@@ -779,6 +782,9 @@ exports.activate = function(req, res, next) {
           } else {
             user.enabled = true;
             user.save().then(function() {
+              if (config.selfservice.redirect_sign_up) {
+                return res.redirect(config.selfservice.redirect_sign_up);
+              }
               res.locals.message = {
                 text: 'User activated. login using your credentials.',
                 type: 'success',
@@ -983,6 +989,9 @@ exports.change_password = function(req, res) {
             user
               .save()
               .then(function() {
+                if (config.selfservice.redirect_reset_password) {
+                  return res.redirect(config.selfservice.redirect_reset_password);
+                }
                 req.session.message = {
                   text: ' Password successfully changed',
                   type: 'success',

@@ -136,6 +136,12 @@ config.mail = {
     mailgun_api_key: (process.env.IDM_MAILGUN_API_KEY || '')
 }
 
+// Selfservice configuration
+config.selfservice = {
+    redirect_sign_up: (process.env.IDM_SELFSERVICE_REDIRECT_SIGN_UP || ''),
+    redirect_reset_password: (process.env.IDM_SELFSERVICE_RESET_PASSWORD || '')
+}
+
 // Config themes
 config.site = {
     title: (process.env.IDM_TITLE || 'Identity Manager'),
